@@ -1,0 +1,25 @@
+<h2>Companies</h2>
+
+<%= link_to 'New Company', new_company_path %>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Mission</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= company.name %></td>
+        <td><%= company.mission %></td>
+        <td><%= link_to 'Show', company %></td>
+        <td><%= link_to 'Edit', edit_company_path(company) %></td>
+        <td><%= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

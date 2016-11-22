@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <h2>Company: <%= @company.name %></h2>
+</div>
+
+<div class="row">
+  <!-- Basic Info -->
+  <div class="col-sm-8">
+    <div class="card card-block company-basic">
+      <h5 class="card-title">Basic Info</h5>
+      <div class="card-text">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <td><b># Employees:</b></td>
+                <td><%= @company.number_of_employees %></td>
+              </tr>
+              <tr>
+                <td><b>Product of Service:</b></td>
+                <td><%= @company.product %></td>
+              </tr>
+              <tr>
+                <td><b>Typical Sale Size:</b></td>
+                <td><%= @company.typical_sale_size %></td>
+              </tr>
+              <tr>
+                <td><b>Website:</b></td>
+                <td><%= link_to @company.website %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission -->
+  <div class="col-sm-4">
+    <div class="card card-block">
+      <h5 class="card-title">Mission</h5>
+      <p class="card-text"><%= @company.mission %></p>
+    </div>
+  </div>
+</div>
+
+<!-- Notes -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-block">
+      <h5 class="card-title">Notes</h5>
+      <p class="card-text"><%= @company.notes.html_safe %></p>
+    </div>
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>
