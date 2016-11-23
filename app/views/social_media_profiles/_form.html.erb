@@ -15,7 +15,11 @@
   <div class="form-group">
     <%= f.text_field :url, placeholder: 'url', class: 'form-control' %>
 
-    <%= f.hidden_field :company_id, value: @company.id %>
+    <% if @company %>
+      <%= f.hidden_field :company_id, value: @company.id %>
+    <% elsif @person %>
+      <%= f.hidden_field :person_id, value: @person.id %>
+    <% end %>
   </div>
   <%= f.submit 'Add Social Media', class: 'btn btn-default' %>
 <% end %>

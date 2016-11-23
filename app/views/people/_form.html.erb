@@ -1,0 +1,111 @@
+<%= form_for(@person) do |f| %>
+  <% if @person.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+      <% @person.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <h4>
+      Name:
+      <%= f.text_field :first_name, placeholder: "First" %>
+      <%= f.text_field :last_name, placeholder: "Last" %>
+    </h4>
+  </div>
+
+  <div class="row">
+    <!-- Basic Info -->
+    <div class="col-md-6">
+      <div class="card card-block person-basic">
+        <h5 class="card-title">Basic Info</h5>
+        <div class="card-text">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <td><b>Work Phone:</b></td>
+                  <td><%= f.text_field :work_phone %></td>
+                </tr>
+                <tr>
+                  <td><b>Cell Phone:</b></td>
+                  <td><%= f.text_field :cell_phone %></td>
+                </tr>
+                <tr>
+                  <td><b>Email:</b></td>
+                  <td><%= f.text_field :email %></td>
+                </tr>
+                <tr>
+                  <td><b>Gender:</b></td>
+                  <td>
+                    <%= f.radio_button :male, "true" %>Male
+                    <%= f.radio_button :male, "false" %>Female</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mission -->
+    <div class="col-md-6">
+      <div class="card card-block">
+        <h5 class="card-title">Address</h5>
+        <p class="card-text">
+          <%= f.text_area :address, class: 'tinymce' %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-block">
+        <h5 class="card-title">Notes</h5>
+        <p class="card-text">
+          <%= f.text_area :notes, class: 'tinymce' %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.button class: 'btn btn-primary form-control' %>
+  </div>
+<% end %>
+
+<!-- Social Media -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-block">
+      <h5 class="card-title">Social Media Profiles</h5>
+      <p class="card-text">
+        <% if @person.social_media_profiles.empty? %>
+          <span>There are no profiles currently connected.</span>
+        <% else %>
+          <ul class="list-style">
+            <% @person.social_media_profiles.each do |p| %>
+            <li>
+              <a href="<%= p.url %>" target="_blank">
+                <%= p.url %>
+              </a> | <%= link_to 'Destroy', p, :confirm => 'Are you sure?', :method => :delete %>
+            </li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <%= render 'social_media_profiles/form' %>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<%= tinymce %>

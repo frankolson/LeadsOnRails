@@ -1,0 +1,82 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <h2>Persone: <%= "#{@person.first_name} #{@person.last_name}" %></h2>
+</div>
+
+<div class="row">
+  <!-- Basic Info -->
+  <div class="col-md-6">
+    <div class="card card-block person-basic">
+      <h5 class="card-title">Basic Info</h5>
+      <div class="card-text">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <td><b>Work Phone:</b></td>
+                <td><%= @person.work_phone %></td>
+              </tr>
+              <tr>
+                <td><b>Cell Phone:</b></td>
+                <td><%= @person.cell_phone %></td>
+              </tr>
+              <tr>
+                <td><b>Email:</b></td>
+                <td><%= @person.email %></td>
+              </tr>
+              <tr>
+                <td><b>Gender:</b></td>
+                <td><%= @person.male ? "Male" : "Female" %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission -->
+  <div class="col-md-6">
+    <div class="card card-block">
+      <h5 class="card-title">Address</h5>
+      <p class="card-text"><%= @person.address %></p>
+    </div>
+  </div>
+</div>
+
+<!-- Social Media -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-block">
+      <h5 class="card-title">Social Media Profiles</h5>
+      <p class="card-text">
+        <% if @person.social_media_profiles.empty? %>
+          <span>There are no profiles currently connected.</span>
+        <% else %>
+          <ul class="list-style">
+            <% @person.social_media_profiles.each do |p| %>
+              <li>
+                <a href="<%= p.url %>" target="_blank"><%= p.url %></a>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Notes -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-block">
+      <h5 class="card-title">Notes</h5>
+      <p class="card-text"><%= @person.notes.html_safe %></p>
+    </div>
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', companies_path %>

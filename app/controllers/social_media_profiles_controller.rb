@@ -3,26 +3,45 @@ class SocialMediaProfilesController < ApplicationController
 
   # POST /social_media_profiles
   def create
-    @company = Company.find(social_media_profile_params[:company_id])
-    @social_media_profile = @company.social_media_profiles.build(social_media_profile_params)
+    if !social_media_profile_params[:company_id].nil?
+      @owner = Company.find(social_media_profile_params[:company_id])
+    elsif !social_media_profile_params[:person_id].nil?
+      @owner = Person.find(social_media_profile_params[:person_id])
+    end
+
+    @social_media_profile = SocialMediaProfile.create(social_media_profile_params)
+
     respond_to do |format|
       if @social_media_profile.save
-        format.html { redirect_to @company,
-                      notice: 'Social Media Profile was successfully created.' }
+        @sociable_membership = @owner.sociable_memberships.build(
+            social_media_profile_id: @social_media_profile.id
+          )
+        if @sociable_membership.save
+          format.html { redirect_to @owner,
+                        notice: 'Social Media Profile was successfully created.' }
+        else
+          format.html { redirect_back(fallback_location: @owner) }
+        end
       else
-        format.html { redirect_to :back}
+        format.html { redirect_back(fallback_location: @owner) }
       end
     end
   end
 
   # PATCH/PUT /social_media_profiles/1
   def update
+    if !social_media_profile_params[:company_id].nil?
+      @owner = Company.find(social_media_profile_params[:company_id])
+    elsif !social_media_profile_params[:person_id].nil?
+      @owner = Person.find(social_media_profile_params[:person_id])
+    end
+
     respond_to do |format|
       @social_media_profile.update_attributes(social_media_profile_params)
       if @social_media_profile.save
-        format.html { redirect_to @company, notice: 'Social Media Profile was successfully updated.' }
+        format.html { redirect_to @owner, notice: 'Social Media Profile was successfully updated.' }
       else
-        format.html { redirect_to :back }
+        format.html { redirect_back(fallback_location: @owner) }
       end
     end
   end
@@ -43,6 +62,6 @@ class SocialMediaProfilesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def social_media_profile_params #:doc:
-    params.require(:social_media_profile).permit(:url, :company_id)
+    params.require(:social_media_profile).permit(:url, :company_id, :person_id)
   end
 end
