@@ -13,8 +13,7 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :url %>
-    <%= f.text_field :url, class: 'form-control' %>
+    <%= f.text_field :url, placeholder: 'url', class: 'form-control' %>
 
     <%= f.hidden_field :company_id, value: @company.id %>
   </div>

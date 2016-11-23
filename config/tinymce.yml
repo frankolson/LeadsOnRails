@@ -1,0 +1,5 @@
+toolbar:
+  - bold underline italic | link bullist numlist
+plugins:
+  - link
+menubar: false

@@ -17,7 +17,7 @@
 
   <div class="row">
     <!-- Basic Info -->
-    <div class="col-sm-8">
+    <div class="col-md-6">
       <div class="card card-block company-basic">
         <h5 class="card-title">Basic Info</h5>
         <div class="card-text">
@@ -48,20 +48,24 @@
     </div>
 
     <!-- Mission -->
-    <div class="col-sm-4">
+    <div class="col-md-6">
       <div class="card card-block">
         <h5 class="card-title">Mission</h5>
-        <p class="card-text"><%= f.text_area :mission %></p>
+        <p class="card-text">
+          <%= f.text_area :mission, class: 'tinymce' %>
+        </p>
       </div>
     </div>
   </div>
 
   <!-- Notes -->
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-md-12">
       <div class="card card-block">
         <h5 class="card-title">Notes</h5>
-        <p class="card-text"><%= f.text_area :notes %></p>
+        <p class="card-text">
+          <%= f.text_area :notes, class: 'tinymce' %>
+        </p>
       </div>
     </div>
   </div>
@@ -73,7 +77,7 @@
 
 <!-- Social Media -->
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-md-12">
     <div class="card card-block">
       <h5 class="card-title">Social Media Profiles</h5>
       <p class="card-text">
@@ -83,7 +87,9 @@
           <ul class="list-style">
             <% @company.social_media_profiles.each do |p| %>
             <li>
-              <%= link_to p.url %> | <%= link_to 'Destroy', p, :confirm => 'Are you sure?', :method => :delete %>
+              <a href="<%= p.url %>" target="_blank">
+                <%= p.url %>
+              </a> | <%= link_to 'Destroy', p, :confirm => 'Are you sure?', :method => :delete %>
             </li>
             <% end %>
           </ul>
@@ -94,3 +100,6 @@
     </div>
   </div>
 </div>
+
+
+<%= tinymce %>

@@ -6,7 +6,7 @@
 
 <div class="row">
   <!-- Basic Info -->
-  <div class="col-sm-8">
+  <div class="col-md-6">
     <div class="card card-block company-basic">
       <h5 class="card-title">Basic Info</h5>
       <div class="card-text">
@@ -27,7 +27,11 @@
               </tr>
               <tr>
                 <td><b>Website:</b></td>
-                <td><%= link_to @company.website %></td>
+                <td>
+                  <a href="<%= @company.website %>" target="_blank">
+                    <%= @company.website %>
+                  </a>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -37,7 +41,7 @@
   </div>
 
   <!-- Mission -->
-  <div class="col-sm-4">
+  <div class="col-md-6">
     <div class="card card-block">
       <h5 class="card-title">Mission</h5>
       <p class="card-text"><%= @company.mission %></p>
@@ -47,7 +51,7 @@
 
 <!-- Social Media -->
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-md-12">
     <div class="card card-block">
       <h5 class="card-title">Social Media Profiles</h5>
       <p class="card-text">
@@ -57,7 +61,7 @@
           <ul class="list-style">
             <% @company.social_media_profiles.each do |p| %>
               <li>
-                <%= link_to p.url %>
+                <a href="<%= p.url %>" target="_blank"><%= p.url %></a>
               </li>
             <% end %>
           </ul>
@@ -69,7 +73,7 @@
 
 <!-- Notes -->
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-md-12">
     <div class="card card-block">
       <h5 class="card-title">Notes</h5>
       <p class="card-text"><%= @company.notes.html_safe %></p>
