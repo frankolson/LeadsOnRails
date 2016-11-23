@@ -45,6 +45,28 @@
   </div>
 </div>
 
+<!-- Social Media -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-block">
+      <h5 class="card-title">Social Media Profiles</h5>
+      <p class="card-text">
+        <% if @company.social_media_profiles.empty? %>
+          <span>There are no profiles currently connected.</span>
+        <% else %>
+          <ul class="list-style">
+            <% @company.social_media_profiles.each do |p| %>
+              <li>
+                <%= link_to p.url %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+
 <!-- Notes -->
 <div class="row">
   <div class="col-sm-12">

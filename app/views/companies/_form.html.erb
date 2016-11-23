@@ -70,3 +70,27 @@
     <%= f.button class: 'btn btn-primary form-control' %>
   </div>
 <% end %>
+
+<!-- Social Media -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-block">
+      <h5 class="card-title">Social Media Profiles</h5>
+      <p class="card-text">
+        <% if @company.social_media_profiles.empty? %>
+          <span>There are no profiles currently connected.</span>
+        <% else %>
+          <ul class="list-style">
+            <% @company.social_media_profiles.each do |p| %>
+            <li>
+              <%= link_to p.url %> | <%= link_to 'Destroy', p, :confirm => 'Are you sure?', :method => :delete %>
+            </li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <%= render 'social_media_profiles/form' %>
+      </p>
+    </div>
+  </div>
+</div>

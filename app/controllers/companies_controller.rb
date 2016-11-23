@@ -13,10 +13,12 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
+    @social_media_profile = SocialMediaProfile.new
   end
 
   # GET /companies/1/edit
   def edit
+    @social_media_profile = SocialMediaProfile.new
   end
 
   # POST /companies

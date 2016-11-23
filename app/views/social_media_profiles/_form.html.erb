@@ -1,0 +1,22 @@
+<%= form_for @social_media_profile, html: { class: 'form-inline' } do |f| %>
+
+  <% if @social_media_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@social_media_profile.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% @social_media_profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :url %>
+    <%= f.text_field :url, class: 'form-control' %>
+
+    <%= f.hidden_field :company_id, value: @company.id %>
+  </div>
+  <%= f.submit 'Add Social Media', class: 'btn btn-default' %>
+<% end %>
