@@ -17,8 +17,13 @@ class SocialMediaProfilesController < ApplicationController
             social_media_profile_id: @social_media_profile.id
           )
         if @sociable_membership.save
-          format.html { redirect_to @owner,
-                        notice: 'Social Media Profile was successfully created.' }
+          if @owner.class.name == 'Person'
+            format.html { redirect_to edit_person_path(@owner),
+                          notice: 'Social Media Profile was successfully created.' }
+          elsif @owner.class.name == 'Company'
+            format.html { redirect_to edit_company_path(@owner),
+                          notice: 'Social Media Profile was successfully created.' }
+          end
         else
           format.html { redirect_back(fallback_location: @owner) }
         end
