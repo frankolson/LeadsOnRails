@@ -81,6 +81,29 @@
   </div>
 </div>
 
+<!-- Employees -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-block">
+      <h5 class="card-title">Current Employees</h5>
+      <p class="card-text">
+        <% if @company.jobs.empty? %>
+          <span>There are currently no employees associated.</span>
+        <% else %>
+          <ul class="list-style">
+            <% @company.jobs.each do |j| %>
+              <li>
+                <%= link_to "#{j.person.first_name} #{j.person.last_name}", j.person %>
+                <%= " | #{j.title}" %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

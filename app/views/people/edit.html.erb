@@ -2,5 +2,62 @@
 
 <%= render 'form' %>
 
+<!-- Social Media -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-block">
+      <h5 class="card-title">Social Media Profiles</h5>
+      <p class="card-text">
+        <% if @person.social_media_profiles.empty? %>
+          <span>There are no profiles currently connected.</span>
+        <% else %>
+          <ul class="list-style">
+            <% @person.social_media_profiles.each do |p| %>
+            <li>
+              <a href="<%= p.url %>" target="_blank">
+                <%= p.url %>
+              </a> | <%= link_to 'Destroy', p, :confirm => 'Are you sure?', :method => :delete %>
+            </li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <%= render 'social_media_profiles/form' %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Jobs -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-block">
+      <h5 class="card-title">Current Positions</h5>
+      <p class="card-text">
+        <% if @person.jobs.empty? %>
+          <span>There are currently no jobs associated.</span>
+        <% else %>
+          <ul class="list-style">
+            <% @person.jobs.each do |j| %>
+              <li>
+                <%= "#{j.title} | " %>
+                <%= link_to "#{j.company.name} ", j.company %>
+                <%= link_to 'Destroy', job_path(j, job: {
+                                         person_id: @person,
+                                         company_id: j.company
+                                       }),
+                                       :confirm => 'Are you sure?',
+                                       :method => :delete %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <%= render 'jobs/form' %>
+      </p>
+    </div>
+  </div>
+</div>
+
 <%= link_to 'Show', @person %> |
 <%= link_to 'Back', people_path %>

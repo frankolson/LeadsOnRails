@@ -14,11 +14,13 @@ class PeopleController < ApplicationController
   def new
     @person = Person.new
     @social_media_profile = SocialMediaProfile.new
+    @job = Job.new
   end
 
   # GET /people/1/edit
   def edit
     @social_media_profile = SocialMediaProfile.new
+    @job = Job.new
   end
 
   # POST /people

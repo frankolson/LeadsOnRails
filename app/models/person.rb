@@ -1,9 +1,9 @@
 class Person < ActiveRecord::Base
-  validates_presence_of :last_name
+  validates :last_name, presence: true
 
+  has_many :jobs
+  has_many :companies, through: :jobs
   has_many :sociable_memberships
   has_many :social_media_profiles, through: :sociable_memberships
-
-  belongs_to :company, optional: true
 
 end

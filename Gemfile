@@ -7,6 +7,9 @@ source 'https://rubygems.org'
 gem 'bootstrap', '~> 4.0.0.alpha5'
 # WYSIWYG Text Area
 gem 'tinymce-rails'
+# Datepicker
+gem 'bootstrap-datepicker-rails'
+
 
 
 

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require tinymce
+//= require bootstrap-datepicker
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .

@@ -13,9 +13,13 @@
 
   <div class="row">
     <h4>
-      Name:
-      <%= f.text_field :first_name, placeholder: "First" %>
-      <%= f.text_field :last_name, placeholder: "Last" %>
+      <div class="form-inline">
+        <div class="form-group">
+          Name:
+          <%= f.text_field :first_name, placeholder: "First", class: 'form-control' %>
+          <%= f.text_field :last_name, placeholder: "Last", class: 'form-control' %>
+        </div>
+      </div>
     </h4>
   </div>
 
@@ -29,22 +33,16 @@
             <table class="table table-hover">
               <tbody>
                 <tr>
-                  <td><b>Company:</b></td>
-                  <td>
-                    <%= f.select :company_id, options_for_select(Company.all.map{ |c| [c.name, c.id] }, f.object.company_id) %>
-                  </td>
-                </tr>
-                <tr>
                   <td><b>Work Phone:</b></td>
-                  <td><%= f.text_field :work_phone %></td>
+                  <td><%= f.text_field :work_phone, class: 'form-control' %></td>
                 </tr>
                 <tr>
                   <td><b>Cell Phone:</b></td>
-                  <td><%= f.text_field :cell_phone %></td>
+                  <td><%= f.text_field :cell_phone, class: 'form-control' %></td>
                 </tr>
                 <tr>
                   <td><b>Email:</b></td>
-                  <td><%= f.text_field :email %></td>
+                  <td><%= f.text_field :email, class: 'form-control' %></td>
                 </tr>
                 <tr>
                   <td><b>Gender:</b></td>
@@ -52,20 +50,14 @@
                     <%= f.radio_button :male, "true" %>Male
                     <%= f.radio_button :male, "false" %>Female</td>
                 </tr>
+                <tr>
+                  <td><b>Address:</b></td>
+                  <td><%= f.text_field :address, class: 'form-control' %></td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Mission -->
-    <div class="col-md-6">
-      <div class="card card-block">
-        <h5 class="card-title">Address</h5>
-        <p class="card-text">
-          <%= f.text_area :address, class: 'tinymce' %>
-        </p>
       </div>
     </div>
   </div>
@@ -86,32 +78,6 @@
     <%= f.button class: 'btn btn-primary form-control' %>
   </div>
 <% end %>
-
-<!-- Social Media -->
-<div class="row">
-  <div class="col-md-12">
-    <div class="card card-block">
-      <h5 class="card-title">Social Media Profiles</h5>
-      <p class="card-text">
-        <% if @person.social_media_profiles.empty? %>
-          <span>There are no profiles currently connected.</span>
-        <% else %>
-          <ul class="list-style">
-            <% @person.social_media_profiles.each do |p| %>
-            <li>
-              <a href="<%= p.url %>" target="_blank">
-                <%= p.url %>
-              </a> | <%= link_to 'Destroy', p, :confirm => 'Are you sure?', :method => :delete %>
-            </li>
-            <% end %>
-          </ul>
-        <% end %>
-
-        <%= render 'social_media_profiles/form' %>
-      </p>
-    </div>
-  </div>
-</div>
 
 
 <%= tinymce %>

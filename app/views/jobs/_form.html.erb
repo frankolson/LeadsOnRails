@@ -1,0 +1,22 @@
+<%= form_for @job, html: { class: 'form-inline' } do |f| %>
+
+  <% if @job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% @job.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.text_field :title, placeholder: 'title', class: 'form-control' %>
+    <%= f.select :company_id, options_for_select(Company.all.map{ |c| [c.name, c.id] }, f.object.company_id), {}, class: 'form-control' %>
+    <%= f.text_field :start_date, data: { provide: 'datepicker' }, class: 'form-control' %>
+    <%= f.hidden_field :person_id, value: @person.id %>
+  </div>
+  <%= f.submit 'Add Position', class: 'btn btn-default' %>
+<% end %>

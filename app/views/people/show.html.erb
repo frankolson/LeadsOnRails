@@ -16,10 +16,16 @@
               <tr>
                 <td><b>Company:</b></td>
                 <td>
-                  <% if @person.company.nil? %>
+                  <% if @person.companies.blank? %>
                     None Associated
                   <% else %>
-                    <%= @person.company.name %>
+                    <% @person.companies.each_with_index do |company, index| %>
+                      <% if index == 0 %>
+                        <%= "#{company.name}" %>
+                      <% else %>
+                        <%= " | #{company.name}" %>
+                      <% end %>
+                    <% end %>
                   <% end %>
                 </td>
               </tr>
@@ -39,18 +45,14 @@
                 <td><b>Gender:</b></td>
                 <td><%= @person.male ? "Male" : "Female" %></td>
               </tr>
+              <tr>
+                <td><b>Address:</b></td>
+                <td><%= @person.address %></td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Mission -->
-  <div class="col-md-6">
-    <div class="card card-block">
-      <h5 class="card-title">Address</h5>
-      <p class="card-text"><%= @person.address %></p>
     </div>
   </div>
 </div>
@@ -68,6 +70,29 @@
             <% @person.social_media_profiles.each do |p| %>
               <li>
                 <a href="<%= p.url %>" target="_blank"><%= p.url %></a>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Jobs -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-block">
+      <h5 class="card-title">Current Positions</h5>
+      <p class="card-text">
+        <% if @person.jobs.empty? %>
+          <span>There are currently no jobs associated.</span>
+        <% else %>
+          <ul class="list-style">
+            <% @person.jobs.each do |j| %>
+              <li>
+                <%= "#{j.title} | " %>
+                <%= link_to "#{j.company.name}", j.company %>
               </li>
             <% end %>
           </ul>

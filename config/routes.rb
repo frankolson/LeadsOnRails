@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :companies
   resources :people
+  resources :jobs
   resources :social_media_profiles
 
   root 'companies#index'

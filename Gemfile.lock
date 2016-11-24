@@ -44,6 +44,8 @@ GEM
     bootstrap (4.0.0.alpha5)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
+    bootstrap-datepicker-rails (1.6.4.1)
+      railties (>= 3.0)
     builder (3.2.2)
     byebug (9.0.6)
     coffee-rails (4.2.1)
@@ -162,6 +164,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap (~> 4.0.0.alpha5)
+  bootstrap-datepicker-rails
   byebug
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
