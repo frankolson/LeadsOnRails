@@ -14,6 +14,15 @@
       <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation"></button>
       <a class="navbar-brand" href="#">LeadsOnRails</a>
       <div id="navbar">
+        <nav class="nav navbar-nav float-xs-left">
+          <% if user_signed_in? %>
+            Logged in as <strong><%= current_user.email %></strong>.
+            <%= link_to 'Edit profile', edit_user_registration_path, class: "nav-item nav-link" %> |
+            <%= link_to "Logout", destroy_user_session_path, method: :delete , class: "nav-item nav-link" %>
+          <% else %>
+            <%= link_to "Login", new_user_session_path, class: "nav-item nav-link"  %>
+          <% end %>
+        </div>
         <form class="float-xs-right">
           <input type="text" class="form-control" placeholder="Search...">
         </form>
@@ -39,6 +48,12 @@
         </div>
 
         <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
+          <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert alert-danger"><%= alert %></p>
+          <% end %>
           <%= yield %>
         </div>
       </div>

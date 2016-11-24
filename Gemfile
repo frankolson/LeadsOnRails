@@ -9,6 +9,8 @@ gem 'bootstrap', '~> 4.0.0.alpha5'
 gem 'tinymce-rails'
 # Datepicker
 gem 'bootstrap-datepicker-rails'
+# User Authentication
+gem 'devise'
 
 
 
