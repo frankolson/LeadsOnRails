@@ -15,7 +15,7 @@
     <% @companies.each do |company| %>
       <tr>
         <td><%= company.name %></td>
-        <td><%= ActionView::Base.full_sanitizer.sanitize(company.mission) %></td>
+        <td><%= truncate(ActionView::Base.full_sanitizer.sanitize(company.mission), length: 50) %></td>
         <td><%= link_to 'Show', company %></td>
         <td><%= link_to 'Edit', edit_company_path(company) %></td>
         <td><%= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %></td>
