@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20161123232426) do
     t.text     "address"
     t.boolean  "male"
     t.text     "notes"
+    t.integer  "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

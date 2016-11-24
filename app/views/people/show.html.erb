@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row">
-  <h2>Persone: <%= "#{@person.first_name} #{@person.last_name}" %></h2>
+  <h2>Person: <%= "#{@person.first_name} #{@person.last_name}" %></h2>
 </div>
 
 <div class="row">
@@ -13,6 +13,16 @@
         <div class="table-responsive">
           <table class="table table-hover">
             <tbody>
+              <tr>
+                <td><b>Company:</b></td>
+                <td>
+                  <% if @person.company.nil? %>
+                    None Associated
+                  <% else %>
+                    <%= @person.company.name %>
+                  <% end %>
+                </td>
+              </tr>
               <tr>
                 <td><b>Work Phone:</b></td>
                 <td><%= @person.work_phone %></td>

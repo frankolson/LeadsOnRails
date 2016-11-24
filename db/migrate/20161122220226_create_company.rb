@@ -6,7 +6,7 @@ class CreateCompany < ActiveRecord::Migration[5.0]
       t.string :product
       t.string :typical_sale_size
       t.string :website
-      t.string :mission
+      t.text   :mission
       t.text   :notes
 
       t.timestamps null: false

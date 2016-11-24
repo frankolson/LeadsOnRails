@@ -4,4 +4,6 @@ class Person < ActiveRecord::Base
   has_many :sociable_memberships
   has_many :social_media_profiles, through: :sociable_memberships
 
+  belongs_to :company, optional: true
+
 end

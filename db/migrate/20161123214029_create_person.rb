@@ -9,6 +9,7 @@ class CreatePerson < ActiveRecord::Migration[5.0]
       t.text    :address
       t.boolean :male
       t.text    :notes
+      t.integer :company_id
 
       t.timestamps null: false
     end

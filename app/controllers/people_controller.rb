@@ -38,7 +38,7 @@ class PeopleController < ApplicationController
     respond_to do |format|
       @person.update_attributes(person_params)
       if @person.save
-        format.html { redirect_to root_path, notice: 'Person was successfully updated.' }
+        format.html { redirect_to @person, notice: 'Person was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -61,6 +61,6 @@ class PeopleController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def person_params #:doc:
-    params.require(:person).permit(:first_name, :last_name, :work_phone, :cell_phone, :email, :address, :male, :notes)
+    params.require(:person).permit(:first_name, :last_name, :work_phone, :cell_phone, :email, :address, :male, :notes, :company_id)
   end
 end

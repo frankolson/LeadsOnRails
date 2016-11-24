@@ -29,6 +29,12 @@
             <table class="table table-hover">
               <tbody>
                 <tr>
+                  <td><b>Company:</b></td>
+                  <td>
+                    <%= f.select :company_id, options_for_select(Company.all.map{ |c| [c.name, c.id] }, f.object.company_id) %>
+                  </td>
+                </tr>
+                <tr>
                   <td><b>Work Phone:</b></td>
                   <td><%= f.text_field :work_phone %></td>
                 </tr>
