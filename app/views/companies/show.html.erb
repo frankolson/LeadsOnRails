@@ -42,7 +42,7 @@
   <div class="col-md-6">
     <div class="card card-block">
       <h5 class="card-title">Mission</h5>
-      <p class="card-text"><%= @company.mission %></p>
+      <p class="card-text"><%= ActionView::Base.full_sanitizer.sanitize(@company.mission) %></p>
     </div>
   </div>
 </div>
