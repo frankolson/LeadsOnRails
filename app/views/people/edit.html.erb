@@ -41,7 +41,12 @@
             <% @person.jobs.each do |j| %>
               <li>
                 <%= "#{j.title} | " %>
-                <%= link_to "#{j.company.name} ", j.company %>
+                <%= link_to "#{j.company.name}", j.company %>
+                <%= " | " %>
+
+                <%= j.duration_human_readble %>
+
+                <%= " | " %>
                 <%= link_to 'Destroy', job_path(j, job: {
                                          person_id: @person,
                                          company_id: j.company

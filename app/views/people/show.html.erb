@@ -93,6 +93,9 @@
               <li>
                 <%= "#{j.title} | " %>
                 <%= link_to "#{j.company.name}", j.company %>
+                <%= " | " %>
+
+                <%= j.duration_human_readble %>
               </li>
             <% end %>
           </ul>

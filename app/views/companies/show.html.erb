@@ -95,6 +95,7 @@
               <li>
                 <%= link_to "#{j.person.first_name} #{j.person.last_name}", j.person %>
                 <%= " | #{j.title}" %>
+                <%= " | #{j.duration_human_readble}" %>
               </li>
             <% end %>
           </ul>
